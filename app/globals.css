@@ -1,26 +1,149 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+    /* --- Colors ---
+       --color-{name} → bg-{name}, text-{name}, border-{name}  */
+    --color-primary: #c5a47e; /* bg-primary, text-primary   */
+    --color-primary-dark: #a8835a; /* bg-primary-dark            */
+    --color-dark: rgba(30, 30, 30, 0.97); /* bg-dark       */
+
+    /* --- Font families ---
+       --font-{name} → font-{name}                               */
+    --font-sans: "Verlag-Book", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-slim: "Slim-Joe", serif; /* font-slim               */
+    --font-serif: "Droid Serif", serif; /* font-serif              */
+
+    /* --- Font sizes ---
+       --text-{name} → text-{name}                               */
+    --text-display: 5rem; /* text-display                         */
+
+    /* --- Border radius ---
+       --radius-{name} → rounded-{name}                          */
+    --radius-card: 0.75rem; /* rounded-card                         */
+
+    /* --- Spacing ---
+       --spacing-{n} → p-{n}, m-{n}, gap-{n}, w-{n}, h-{n}...  */
+    --spacing-18: 4.5rem; /* p-18, mt-18, gap-18...               */
+    --spacing-22: 5.5rem; /* p-22, mt-22...                       */
+
+    /* --- Box shadows ---
+       --shadow-{name} → shadow-{name}                           */
+    --shadow-card: 0 2px 12px 0 rgba(0, 0, 0, 0.08); /* shadow-card */
+
+    /* --- Breakpoints  --- */
+    /* --breakpoint-sm: 640px;  */
+    /* --breakpoint-md: 768px;  */
+    /* --breakpoint-lg: 1024px; */
+    /* --breakpoint-xl: 1280px; */
+    /* --breakpoint-2xl: 1536px; */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── 4. Base styles ─────────────────────────────────────────── */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        @apply bg-white text-gray-700;
+        font-family: var(--font-sans);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 400;
+    }
+
+    a {
+        @apply no-underline transition-colors duration-200;
+    }
+
+    *:focus-visible {
+        @apply outline-2 outline-offset-2 outline-primary;
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── 5. Component classes ───────────────────────────────────── */
+@layer components {
+    /* Buttons */
+    .btn-primary {
+        @apply inline-flex items-center gap-2 px-6 py-2.5
+           border-2 border-primary text-primary font-semibold
+           text-sm uppercase tracking-widest rounded
+           hover:bg-primary hover:text-white
+           transition-all duration-300 cursor-pointer;
+    }
+
+    .btn-dark {
+        @apply inline-flex items-center gap-2 px-6 py-2.5
+           border-2 border-gray-800 text-gray-800 font-semibold
+           text-sm uppercase tracking-widest rounded
+           hover:bg-gray-800 hover:text-white
+           transition-all duration-300 cursor-pointer;
+    }
+
+    /* Form */
+    .input-base {
+        @apply w-full border border-gray-200 rounded px-4 py-2.5
+           text-gray-700 placeholder-gray-300 bg-white
+           focus:outline-none focus:border-gray-500
+           transition-colors duration-300;
+    }
+
+    /* Layout */
+    .section {
+        @apply py-16 relative bg-white;
+    }
+
+    .container-base {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    /* Card */
+    .card {
+        @apply bg-white rounded-card shadow-card p-6;
+    }
+
+    /* Separator ✻ */
+    .separator {
+        @apply flex justify-center my-4 text-primary text-xl tracking-widest;
+    }
+
+    .line-separator {
+        @apply text-primary relative w-3xs my-4 mx-auto
+          after:content-[''] after:block after:w-[40%] after:mt-3.5 after:border after:border-primary after:float-right
+          before:content-[''] before:block before:w-[40%] before:mt-3.5 before:border before:border-primary before:float-left;
+    }
+
+    /* Project hover overlay */
+    .project-overlay {
+        @apply absolute inset-0 flex flex-col items-center justify-center
+           opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+    }
+
+    .text-title {
+        @apply text-[2rem] leading-tight tracking-[0.02em] my-[0.4em] font-bold uppercase;
+    }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── 6. Utilities  ───────────────────────────────────── */
+@layer utilities {
+    .parallax-bg {
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .text-gradient {
+        background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 }

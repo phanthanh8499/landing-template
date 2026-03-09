@@ -1,0 +1,17 @@
+{
+    "nav": {
+        "home": "Home",
+        "news": "News",
+        "about": "About",
+        "contact": "Contact"
+    },
+    "footer": {
+        "copyright": "© 2026 Your Company. All rights reserved."
+    },
+    "actions": {
+        "send": "Send",
+        "cancel": "Cancel",
+        "readMore": "Read more",
+        "backToTop": "Back to top"
+    }
+}

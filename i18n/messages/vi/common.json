@@ -1,0 +1,17 @@
+{
+    "nav": {
+        "home": "Trang chủ",
+        "news": "Tin tức",
+        "about": "Giới thiệu",
+        "contact": "Liên hệ"
+    },
+    "footer": {
+        "copyright": "© 2026 Công ty của bạn. Bảo lưu mọi quyền."
+    },
+    "actions": {
+        "send": "Gửi",
+        "cancel": "Hủy",
+        "readMore": "Xem thêm",
+        "backToTop": "Về đầu trang"
+    }
+}
